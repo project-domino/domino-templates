@@ -1,0 +1,39 @@
+extends ./template.pug
+
+include items.pug
+
+block head
+	title {{.collection.Title}}
+
+block css
+	link(rel="stylesheet", href="/assets/collection.css")
+
+block body
+	div.content
+		div.panel.collection-info
+			div.item-heading
+				h2.item-title {{.collection.Title}}
+				div.item-heading-right
+					span.collection-date
+						| Last Updated - {{.collection.UpdatedAt.Format "2006-01-02"}}
+			div.panel-body
+				p.collection-description {{.collection.Description}}
+			div.panel-seperator
+			| {{if .collection.Tags}}
+			div.tag-list
+				| {{range .collection.Tags}}
+				div.tag {{.Name}}
+				| {{end}}
+			| {{end}}
+			div.contributor-container
+				span.author Created By -
+					= ' '
+					a(href="/u/{{.collection.Author.UserName}}") {{.collection.Author.UserName}}
+		div.panel.collection-notes
+			h2.panel-heading Notes
+			div.panel-body
+				| {{if .collection.Notes}}{{range .collection.Notes}}
+				+noteItem("/collection/{{$.collection.ID}}/note/{{.ID}}/{{toSnakeCase .Title}}", ".")
+				| {{end}}{{else}}
+				span.no-content-text There are no notes in this collection...
+				| {{end}}

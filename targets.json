@@ -1,0 +1,23 @@
+{
+  "account-notifications": "src/account_page/account-notifications.pug",
+  "account-profile": "src/account_page/account-profile.pug",
+  "account-security": "src/account_page/account-security.pug",
+  "collection-note": "src/collection-note.pug",
+  "debug": "src/debug.pug",
+  "editor": "src/editor.pug",
+  "edit-collection": "src/writer_panel/edit-collection.pug",
+  "edit-note": "src/writer_panel/edit-note.pug",
+  "error": "src/error.pug",
+  "home": "src/home.pug",
+  "individual-note": "src/individual-note.pug",
+  "login": "src/login.pug",
+  "new-collection": "src/writer_panel/new-collection.pug",
+  "new-note": "src/writer_panel/new-note.pug",
+  "new-tag": "src/writer_panel/new-tag.pug",
+  "register": "src/register.pug",
+  "search": "src/search.pug",
+  "user-collections": "src/user_page/user-collections.pug",
+  "user-notes": "src/user_page/user-notes.pug",
+  "writer-panel": "src/writer_panel/writer-panel.pug",
+  "collection": "src/collection.pug"
+}

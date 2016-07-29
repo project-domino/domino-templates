@@ -1,0 +1,75 @@
+extends ./template.pug
+
+include items.pug
+
+mixin noteList(list)
+	| {{if #{list}}}{{range #{list}}}
+	+noteItem("/note/{{.ID}}/{{toSnakeCase .Title}}", ".")
+	| {{end}}{{else}}
+	span.no-content-text No notes found...
+	| {{end}}
+
+mixin collectionList(list)
+	| {{if #{list}}}{{range #{list}}}
+	+collectionItem("/collection/{{.ID}}", ".")
+	| {{end}}{{else}}
+	span.no-content-text No collections found...
+	| {{end}}
+
+mixin userList(list)
+	| {{if #{list}}}{{range #{list}}}
+	div.list-item
+		div.item-right
+			div.item-title
+				a(href="/u/{{.UserName}}") {{.UserName}}
+			div.item-date
+				| Joined - {{.CreatedAt.Format "2006-01-02"}}
+	| {{end}}{{else}}
+	span.no-content-text No users found...
+	| {{end}}
+
+mixin searchControl(searchType, pageTitle)
+	- var searchLink = "/search/" + searchType + "?q={{.query}}";
+	li.h-control
+		| {{if eq .searchType "#{searchType}"}}
+		a.active(href=searchLink) #{pageTitle}
+		| {{else}}
+		a(href=searchLink) #{pageTitle}
+		| {{end}}
+
+block head
+	title {{.query}}
+
+block css
+	link(rel="stylesheet", href="/assets/search.css")
+
+block body
+	div.panel.search-result-container
+		div.panel-body
+			ul.h-control-list
+				+searchControl("all", "All")
+				+searchControl("note", "Notes")
+				+searchControl("collection", "Collections")
+				+searchControl("user", "Users")
+			| {{if eq .searchType "all"}}
+			h4.panel-field-header Notes
+			+noteList(".searchResult.Notes")
+			h4.panel-field-header Collections
+			+collectionList(".searchResult.Collections")
+			h4.panel-field-header Users
+			+userList(".searchResult.Users")
+			| {{else}}
+			h4.panel-field-header Results
+			| {{if eq .searchType "note"}}
+			+noteList(".searchResult")
+			| {{else if eq .searchType "collection"}}
+			+collectionList(".searchResult")
+			| {{else if eq .searchType "user"}}
+			+userList(".searchResult")
+			| {{end}}
+			div.page-nav-links
+				a.prev-link(href="{{.prevPage}}")
+					span.fa.fa-chevron-left
+				a.next-link(href="{{.nextPage}}")
+					span.fa.fa-chevron-right
+			| {{end}}

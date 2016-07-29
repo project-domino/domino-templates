@@ -1,0 +1,55 @@
+doctype html
+
+html
+	head
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		script(src="https://use.fontawesome.com/3ca30f4373.js")
+		block css
+			link(rel="stylesheet", href="/assets/main.css")
+		block head
+	body
+		div.navbar
+			block sidebar-btn
+			h2.logo
+				a.navbar-title(href="/") Domino
+			div.search-container
+				input.search-field(placeholder="Search...", value="{{.query}}")
+				button.search-btn
+					span.fa.fa-search
+			div.nav-right-container
+				| {{if .loggedIn}}
+				| {{if eq .user.Type "writer"}}
+				a.writer-panel-btn(href="/writer-panel")
+					span.fa.fa-plus
+				| {{end}}
+				div.dropdown.account-dropdown
+					span.dropdown-btn.account-dropdown-btn
+						| {{if ne .user.Name ""}}
+						| 	{{.user.Name}}
+						| {{else}}
+						| 	{{.user.UserName}}
+						| {{end}}
+					div.dropdown-content.account-dropdown-content
+						a(href="/account") My Account
+						a.logout-btn Sign Out
+				| {{else}}
+				a(href="/register") Sign up
+				span /
+				a(href="/login") Sign in
+				| {{end}}
+		block sidebar
+		div#main-content.main-content
+			block body
+		div#modal.modal
+			div.container
+				div#modal-content.modal-content
+					div#modal-header.modal-header
+						span#modal-close.modal-close ×
+					div#modal-body.modal-body
+					div#modal-footer.modal-footer
+		div#alert.alert
+			div#alert-content.alert-content
+				span#alert-close.alert-close ×
+				span#alert-text.alert-text
+		script(src="/assets/main.js")
+		block scripts

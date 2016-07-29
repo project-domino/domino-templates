@@ -1,0 +1,30 @@
+{
+  "bugs": {
+    "email": "remexre@gmail.com",
+    "url": "https://github.com/project-domino/project-domino-client/issues"
+  },
+  "contributors": [
+    "Akshay Shekhawat <akshay.shekhawat@gmail.com>",
+    "Nathan Ringo <remexre@gmail.com>"
+  ],
+  "description": "The web client for Project Domino.",
+  "homepage": "https://github.com/project-domino/project-domino-client",
+  "license": "UNLICENSED",
+  "name": "project-domino-client",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/project-domino/project-domino-client.git"
+  },
+  "scripts": {
+    "postinstall": "gulp"
+  },
+  "version": "0.0.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-pug": "^3.0.3",
+    "gulp-pug-lint": "^0.1.6",
+    "gulp-rename": "^1.2.2",
+    "lodash": "^4.14.1"
+  }
+}

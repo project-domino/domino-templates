@@ -1,0 +1,10 @@
+extends ./user.pug
+
+include ../items.pug
+
+block user-body
+	+control("collections")
+	div.item-list
+		| {{range .pageUser.Collections}}
+		+collectionItem("/collection/{{.ID}}", ".")
+		| {{end}}

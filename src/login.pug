@@ -1,0 +1,20 @@
+extends ./template.pug
+
+block head
+	title Login
+
+block css
+	link(rel="stylesheet", href="/assets/login.css")
+
+block body
+	div.panel.login-panel
+		h2 Login
+		div.panel-body
+			input#username-field.form-input(placeholder="Enter your username...")
+			input#password-field.form-input(placeholder="Enter your password...", type="password")
+			button#login-btn.btn.btn-primary Login
+			span.seperator or...
+			a(href="/register") Register
+
+block scripts
+	script(src="/assets/login.js")

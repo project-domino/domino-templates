@@ -1,0 +1,10 @@
+extends ./template.pug
+
+block head
+	title Error
+
+block body
+	h1 Error {{ .errors.Status }} ({{ .errors.StatusText }})
+	| {{ range .errors.Errors }}
+	pre {{ . }}
+	| {{ end }}
